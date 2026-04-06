@@ -1,0 +1,358 @@
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --brand-blue: #0050b0;
+            --brand-cyan: #01d3d1;
+            --brand-light: #eaeaea;
+            --bg-dark: #050b14;
+            /* Azul extremadamente oscuro */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--brand-light);
+            overflow-x: hidden;
+        }
+
+        /* Fondo de Cuadrícula Tecnológica (Grid) */
+        .tech-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image:
+                linear-gradient(to right, rgba(1, 211, 209, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(1, 211, 209, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        /* Animaciones */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+                filter: blur(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        /* Efecto de Pulso Neón para el Logo */
+        .neon-pulse {
+            box-shadow: 0 0 15px rgba(1, 211, 209, 0.4), inset 0 0 20px rgba(0, 80, 176, 0.5);
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(1, 211, 209, 0.2), inset 0 0 10px rgba(0, 80, 176, 0.5);
+            }
+
+            100% {
+                box-shadow: 0 0 30px rgba(1, 211, 209, 0.6), inset 0 0 20px rgba(0, 80, 176, 0.8);
+            }
+        }
+
+        /* Estilo HUD para Botones */
+        .hud-btn {
+            background: linear-gradient(90deg, rgba(0, 80, 176, 0.1) 0%, rgba(5, 11, 20, 0.8) 100%);
+            border: 1px solid rgba(1, 211, 209, 0.2);
+            border-left: 4px solid var(--brand-cyan);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hud-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(1, 211, 209, 0.1), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .hud-btn:hover {
+            transform: translateX(5px);
+            border-color: var(--brand-cyan);
+            box-shadow: 0 0 20px rgba(1, 211, 209, 0.2);
+            background: linear-gradient(90deg, rgba(0, 80, 176, 0.3) 0%, rgba(5, 11, 20, 0.9) 100%);
+        }
+
+        .hud-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Fuente de sistema para detalles */
+        .font-sys {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Decoración de esquinas tecnológicas */
+        .tech-corner {
+            position: relative;
+        }
+
+        .tech-corner::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 15px;
+            height: 15px;
+            border-top: 2px solid var(--brand-cyan);
+            border-right: 2px solid var(--brand-cyan);
+        }
+
+        .tech-corner::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: -1px;
+            width: 15px;
+            height: 15px;
+            border-bottom: 2px solid var(--brand-cyan);
+            border-left: 2px solid var(--brand-cyan);
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(0, 80, 176, 0.10) 0%, rgba(5, 11, 20, 0.95) 100%);
+            border: 1px solid rgba(1, 211, 209, 0.16);
+            transition: all 0.35s ease;
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(1, 211, 209, 0.55);
+            box-shadow: 0 0 24px rgba(1, 211, 209, 0.12);
+        }
+
+        .project-image-wrap {
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(1, 211, 209, 0.12);
+        }
+
+        .project-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.78;
+            transition: transform 0.45s ease, opacity 0.35s ease, filter 0.35s ease;
+            filter: grayscale(18%);
+        }
+
+        .project-card:hover .project-image-wrap img {
+            transform: scale(1.05);
+            opacity: 0.96;
+            filter: grayscale(0%);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    rgba(5, 11, 20, 0.96) 8%,
+                    rgba(5, 11, 20, 0.28) 55%,
+                    rgba(5, 11, 20, 0.06) 100%);
+        }
+
+        .project-logo-slot {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 58px;
+            height: 58px;
+            background: rgba(227, 222, 255, 0.973);
+            border: 1px solid rgba(1, 211, 209, 0.35);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 0 16px rgba(1, 211, 209, 0.10);
+            overflow: hidden;
+        }
+
+        .project-logo-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 1;
+            filter: none;
+        }
+
+        .project-logo-placeholder {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #01d3d1;
+            letter-spacing: 0.08em;
+        }
+
+        .project-id-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            z-index: 2;
+            background: rgba(5, 11, 20, 0.82);
+            border: 1px solid rgba(1, 211, 209, 0.32);
+            color: var(--brand-cyan);
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .project-client {
+            color: #01d3d1;
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            color: #eaeaea;
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 8px;
+            line-height: 1.3;
+        }
+
+        .project-summary {
+            color: #9ca3af;
+            font-size: 12px;
+            line-height: 1.55;
+            margin-top: 10px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .project-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            color: #01d3d1;
+            background: rgba(0, 80, 176, 0.18);
+            border: 1px solid rgba(1, 211, 209, 0.18);
+        }
+
+        /* =========================
+   SECCIÓN SOCIAL / FEED
+   ========================= */
+        .social-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(0, 80, 176, 0.10) 0%, rgba(5, 11, 20, 0.95) 100%);
+            border: 1px solid rgba(1, 211, 209, 0.16);
+            transition: all 0.35s ease;
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 16px;
+        }
+
+        .social-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(1, 211, 209, 0.55);
+            box-shadow: 0 0 24px rgba(1, 211, 209, 0.12);
+        }
+
+        .social-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #01d3d1;
+            padding: 5px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(1, 211, 209, 0.22);
+            background: rgba(0, 80, 176, 0.16);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .social-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #eaeaea;
+            margin-top: 12px;
+            line-height: 1.35;
+        }
+
+        .social-text {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #9ca3af;
+            margin-top: 10px;
+        }
+
+        .social-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .social-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(1, 211, 209, 0.18);
+            background: rgba(0, 80, 176, 0.18);
+            color: #01d3d1;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: #01d3d1;
+            color: #050b14;
+        }
+
+        .social-embed {
+            width: 100%;
+            min-height: 420px;
+            border: 1px solid rgba(1, 211, 209, 0.18);
+            border-radius: 14px;
+            overflow: hidden;
+            background: rgba(5, 11, 20, 0.7);
+        }
+
+        .social-note {
+            font-size: 11px;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
