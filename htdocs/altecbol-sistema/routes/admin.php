@@ -172,4 +172,11 @@ Route::domain(env('APP_ADMIN_DOMAIN'))->group(function () {
             Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
             Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         });
+        Route::get('/test-gd', function () {
+    dd(
+        extension_loaded('gd'),
+        function_exists('imagecreatefromwebp'),
+        gd_info()
+    );
+});
 });

@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     wget \
     libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libwebp-dev \
     libonig-dev \
     libxml2-dev \
     zip \
@@ -27,6 +30,7 @@ RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/w
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 4. Instalamos extensiones clave de PHP
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 RUN docker-php-ext-install pdo_mysql mysqli mbstring exif pcntl bcmath gd
 
 # 5. Instalamos y habilitamos Redis

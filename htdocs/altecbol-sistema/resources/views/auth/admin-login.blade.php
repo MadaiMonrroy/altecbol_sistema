@@ -1,3 +1,4 @@
+@section('title', 'Iniciar sesión | ALTECBOL')
 <x-guest-layout>
     <div class="w-full max-w-md mx-auto">
         <div class="bg-white shadow-xl rounded-2xl p-8">

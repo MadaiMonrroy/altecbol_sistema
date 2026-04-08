@@ -11,7 +11,9 @@ use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\Web\CasoExitoController;
 use App\Http\Controllers\Web\MiCuentaController;
 use App\Http\Controllers\Web\ProductoFavoritoController;
-
+use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 Route::domain(env('APP_MAIN_DOMAIN'))->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('web.home');
@@ -63,4 +65,19 @@ Route::domain(env('APP_MAIN_DOMAIN'))->group(function () {
 });
 
     require __DIR__ . '/auth.php';
+});
+Route::get('/generar-sitemap', function () {
+
+    $sitemap = Sitemap::create();
+
+    $sitemap->add(Url::create('https://web.altecbol.com.bo/'));
+    $sitemap->add(Url::create('https://web.altecbol.com.bo/nosotros'));
+    $sitemap->add(Url::create('https://web.altecbol.com.bo/servicios'));
+    $sitemap->add(Url::create('https://web.altecbol.com.bo/planes'));
+    $sitemap->add(Url::create('https://web.altecbol.com.bo/contacto'));
+    $sitemap->add(Url::create('https://web.altecbol.com.bo/blog'));
+$sitemap->add(Url::create('https://web.altecbol.com.bo/tienda'));
+    $sitemap->writeToFile(public_path('sitemap.xml'));
+
+    return 'Sitemap generado correctamente';
 });
